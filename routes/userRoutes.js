@@ -15,7 +15,7 @@ router.post('/signup', async (req, res) => {
       // Create a new user
       const newUser = new User({
         username,
-        email, // Make sure this matches the model
+        email, 
         password: hashedPassword,
       });
   
@@ -47,12 +47,12 @@ router.post('/login', async (req, res) => {
             return res.status(401).json({ message: 'Invalid email or password.' });
         }
 
-        // Optional: Generate JWT
+
         const token = jwt.sign({ id: user._id }, 'your_jwt_secret', { expiresIn: '1h' });
 
         res.status(200).json({
             message: 'Login successful.',
-            jwt_token: token, // Send JWT if implemented
+            jwt_token: token, // Send JWT
         });
     } catch (error) {
         res.status(400).json({ message: error.message });
